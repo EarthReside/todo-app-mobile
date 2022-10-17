@@ -15,6 +15,7 @@ export const MainTabNav: React.FC = () => {
         options={{
           title: 'ホーム',
           tabBarIcon: ({color}) => <Ionicons name="md-home" size={30} color={color} />,
+          headerShown: false,
         }}
       />
       <nav.Screen
