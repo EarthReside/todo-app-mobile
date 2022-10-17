@@ -1,6 +1,6 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {FilterType, TodoFilter, TodoList} from 'components/parts';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {Icon, ThemeContext} from 'react-native-elements';
 import {Todo, TodoService} from 'services';
@@ -21,7 +21,8 @@ export const TodoBoard: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filterType, setFilterType] = useState<FilterType>(FilterType.ALL);
 
-  useEffect(() => {
+  useFocusEffect(
+    useCallback(() => {
     let isActive = true;
 
     TodoService.getTodos()
@@ -35,7 +36,8 @@ export const TodoBoard: React.FC = () => {
     return () => {
       isActive = false;
     };
-  }, []);
+  }, []),
+);
 
   const toggleTodoCompletion = (id: number) => {
     const target = todos.find(todo => todo.id === id);
