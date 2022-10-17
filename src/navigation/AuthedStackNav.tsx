@@ -24,6 +24,7 @@ const nav = createStackNavigator();
 export const AuthedStackNav: React.FC = () => {
   return (
     <nav.Navigator screenOptions={{headerShown: false, presentation: 'modal'}} initialRouteName="Main">
+      <nav.Screen name="Main" component={MainTabNav} />
       <nav.Screen
         name="TodoForm"
         component={TodoForm}
